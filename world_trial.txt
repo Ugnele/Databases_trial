@@ -1,0 +1,79 @@
+SOURCE C:\Users\ugne.sarakauskaite\Desktop\world.sql
+
+SHOW TABLES FROM world;
+
+DESCRIBE city;
+
+SELECT CountryCode FROM city;
+
+1. 
+SELECT COUNT(CountryCode) FROM city WHERE CountryCode="USA";
++--------------------+
+| COUNT(CountryCode) |
++--------------------+
+|                274 |
++--------------------+
+
+2. 
+
+SELECT AVG(Population) FROM city WHERE CountryCode="ARG";
++-----------------+
+| AVG(Population) |
++-----------------+
+|     350816.8947 |
++-----------------+
+
+SELECT AVG(LifeExpectancy) FROM country WHERE Name="Argentina";
++---------------------+
+| AVG(LifeExpectancy) |
++---------------------+
+|            75.10000 |
++---------------------+
+
+3.
+
+4.5.6.7.8.9.
+
+10.
+SELECT Name FROM country ORDER BY Population DESC LIMIT 10;
++--------------------+
+| Name               |
++--------------------+
+| China              |
+| India              |
+| United States      |
+| Indonesia          |
+| Brazil             |
+| Pakistan           |
+| Russian Federation |
+| Bangladesh         |
+| Japan              |
+| Nigeria            |
++--------------------+
+
+
+11.
+SELECT Name FROM city WHERE CountryCode="JPN" ORDER BY Population DESC LIMIT 5;
++---------------------+
+| Name                |
++---------------------+
+| Tokyo               |
+| Jokohama [Yokohama] |
+| Osaka               |
+| Nagoya              |
+| Sapporo             |
++---------------------+
+
+12.13.14.15.16.17.
+
+18.
+SELECT Name FROM country ORDER BY LifeExpectancy ASC LIMIT 1;
++------------+
+| Name       |
++------------+
+| Antarctica |
++------------+
+
+19.20.
+
+
