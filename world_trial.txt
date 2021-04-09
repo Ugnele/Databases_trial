@@ -32,7 +32,78 @@ SELECT AVG(LifeExpectancy) FROM country WHERE Name="Argentina";
 
 3.
 
-4.5.6.7.8.9.
+4. N/A
+5. N/A
+
+6.
+SELECT Name FROM city WHERE Name LIKE 'F%' LIMIT 25;
++---------------------------+
+| Name                      |
++---------------------------+
+| Fagatogo                  |
+| Florencio Varela          |
+| Formosa                   |
+| Francistown               |
+| Fortaleza                 |
+| Feira de Santana          |
+| Franca                    |
+| Florianópolis             |
+| Foz do Iguaçu             |
+| Ferraz de Vasconcelos     |
+| Francisco Morato          |
+| Franco da Rocha           |
+| Fuenlabrada               |
+| Faridabad                 |
+| Firozabad                 |
+| Farrukhabad-cum-Fatehgarh |
+| Faizabad                  |
+| Fatehpur                  |
+| Firenze                   |
+| Foggia                    |
+| Ferrara                   |
+| Forlì                     |
+| Fukuoka                   |
+| Funabashi                 |
+| Fukuyama                  |
++---------------------------+
+
+7.
+SELECT COUNT(Name) FROM city WHERE CountryCode="CHN";
++-------------+
+| COUNT(Name) |
++-------------+
+|         363 |
++-------------+
+
+OR
+
+SELECT COUNT(Name) FROM city WHERE CountryCode=(
+    -> SELECT Code FROM country
+    -> WHERE Name="China"
+    -> );
++-------------+
+| COUNT(Name) |
++-------------+
+|         363 |
++-------------+
+
+8.
+SELECT Name FROM country WHERE Population IS NOT NULL ORDER BY Population ASC LIMIT 1 ;
++------------+
+| Name       |
++------------+
+| Antarctica |
++------------+
+
+I don't understand the purpose of IS NOT NULL here :(
+
+9.
+SELECT COUNT(Name) FROM country;
++-------------+
+| COUNT(Name) |
++-------------+
+|         239 |
++-------------+
 
 10.
 SELECT Name FROM country ORDER BY Population DESC LIMIT 10;
@@ -64,7 +135,116 @@ SELECT Name FROM city WHERE CountryCode="JPN" ORDER BY Population DESC LIMIT 5;
 | Sapporo             |
 +---------------------+
 
-12.13.14.15.16.17.
+OR 
+
+       SELECT Name FROM city WHERE CountryCode=(
+    -> SELECT Code FROM country
+    -> WHERE Name="Japan")
+    -> ORDER BY Population DESC LIMIT 5;
++---------------------+
+| Name                |
++---------------------+
+| Tokyo               |
+| Jokohama [Yokohama] |
+| Osaka               |
+| Nagoya              |
+| Sapporo             |
++---------------------+
+5 rows in set (0.00 sec)
+
+12.
+SELECT Name, Code FROM country WHERE HeadOfState="Elisabeth II";
++----------------------------------------------+------+
+| Name                                         | Code |
++----------------------------------------------+------+
+| Anguilla                                     | AIA  |
+| Antigua and Barbuda                          | ATG  |
+| Australia                                    | AUS  |
+| Bahamas                                      | BHS  |
+| Belize                                       | BLZ  |
+| Bermuda                                      | BMU  |
+| Barbados                                     | BRB  |
+| Canada                                       | CAN  |
+| Cocos (Keeling) Islands                      | CCK  |
+| Cook Islands                                 | COK  |
+| Christmas Island                             | CXR  |
+| Cayman Islands                               | CYM  |
+| Falkland Islands                             | FLK  |
+| United Kingdom                               | GBR  |
+| Gibraltar                                    | GIB  |
+| Grenada                                      | GRD  |
+| Heard Island and McDonald Islands            | HMD  |
+| British Indian Ocean Territory               | IOT  |
+| Jamaica                                      | JAM  |
+| Saint Kitts and Nevis                        | KNA  |
+| Saint Lucia                                  | LCA  |
+| Montserrat                                   | MSR  |
+| Norfolk Island                               | NFK  |
+| Niue                                         | NIU  |
+| New Zealand                                  | NZL  |
+| Pitcairn                                     | PCN  |
+| Papua New Guinea                             | PNG  |
+| South Georgia and the South Sandwich Islands | SGS  |
+| Saint Helena                                 | SHN  |
+| Solomon Islands                              | SLB  |
+| Turks and Caicos Islands                     | TCA  |
+| Tokelau                                      | TKL  |
+| Tuvalu                                       | TUV  |
+| Saint Vincent and the Grenadines             | VCT  |
+| Virgin Islands, British                      | VGB  |
++----------------------------------------------+------+
+35 rows in set (0.00 sec)
+
+13.
+
+14.
+SELECT DISTINCT Language FROM countrylanguage;
+... 457 rows in set (0.00 sec)
+
+15.
+SELECT Name FROM country ORDER BY GNP DESC LIMIT 10;
++----------------+
+| Name           |
++----------------+
+| United States  |
+| Japan          |
+| Germany        |
+| France         |
+| United Kingdom |
+| Italy          |
+| China          |
+| Brazil         |
+| Canada         |
+| Spain          |
++----------------+
+
+16.
+SELECT Name FROM country ORDER BY SurfaceArea DESC LIMIT 10;
++--------------------+
+| Name               |
++--------------------+
+| Russian Federation |
+| Antarctica         |
+| Canada             |
+| China              |
+| United States      |
+| Brazil             |
+| Australia          |
+| India              |
+| Argentina          |
+| Kazakstan          |
++--------------------+
+
+17.
+       SELECT Name FROM country
+    -> WHERE Code=(
+    -> SELECT CountryCode FROM countrylanguage WHERE Language="French" AND Percentage>50.0
+    -> );
++--------+
+| Name   |
++--------+
+| France |
++--------+
 
 18.
 SELECT Name FROM country ORDER BY LifeExpectancy ASC LIMIT 1;
